@@ -7,23 +7,24 @@
 		<dict>
 			<key>assets</key>
 			<array>
+			https://github.com/cypherium/Cypherium-Wallet/blob/master/CPH.ipa
 				<dict>
 					<key>kind</key>
 					<string>software-package</string>
 					<key>url</key>
-					<string>https://github.com/cypherium/Cypherium-Wallet/CPH.ipa</string>
+					<string>https://raw.githubusercontent.com/cypherium/Cypherium-Wallet/master/CPH.ipa</string>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>display-image</string>
 					<key>url</key>
-					<string>https://github.com/cypherium/Cypherium-Wallet/icon-57X57.png</string>
+					<string>https://raw.githubusercontent.com/cypherium/Cypherium-Wallet/master/icon-57X57.png</string>
 				</dict>
 				<dict>
 					<key>kind</key>
 					<string>full-size-image</string>
 					<key>url</key>
-					<string>https://github.com/cypherium/Cypherium-Wallet/icon-512X512.png</string>
+					<string>https://raw.githubusercontent.com/cypherium/Cypherium-Wallet/master/icon-512X512.png</string>
 				</dict>
 			</array>
 			<key>metadata</key>
