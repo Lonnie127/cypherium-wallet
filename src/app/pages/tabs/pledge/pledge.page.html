@@ -1,0 +1,86 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-title>{{ 'PLEDGE' | translate }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="header">
+        <!-- <div class="title">
+            <h2 class="text" translate>PLEDGE</h2>
+        </div> -->
+
+        <div class="info">
+            <div class="text" translate>PLEDGE_MINING</div>
+            <p class="desc" translate>PLEDGE_MINING_SLOGAN</p>
+        </div>
+    </div>
+
+    <div class="tab-btns">
+        <div class="money pledge" [ngClass]="businessType == 'pledge' ? 'focus' : ''" tappable
+            (click)="setBusinessType('pledge')">
+            <p class="text" translate>PLEDGE</p>
+        </div>
+        <div class="money drawback" [ngClass]="businessType != 'pledge' ? 'focus' : ''" tappable
+            (click)="setBusinessType('drawback')">
+            <p class="text" translate>DRAWBACK</p>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="title">
+            <p class="text" translate>SMART_CONTRACT_ADDRESS</p>
+            <p class="faq"></p>
+        </div>
+
+        <div class="address">
+            cph{{ pledgeContractAddr }}
+        </div>
+
+        <div class="content-grid">
+            <div class="grid">
+                <p class="label">
+                    {{ businessType == 'pledge' ? ('AVAILBANCE_BALANCE' | translate)  : ('AVAILBANCE_DRAWBACK' | translate) }}
+                </p>
+                <p class="value">{{ walletAmount | coinDisplay }}</p>
+            </div>
+            <div class="grid">
+                <p class="label" translate>PLEDGING</p>
+                <p class="value">{{ pledgeAmount | coinDisplay }}</p>
+            </div>
+            <div class="grid" *ngIf="businessType == 'pledge'">
+                <p class="label" translate>AVENUE_TIMES</p>
+                <p class="value">{{ (times || 0).toFixed(2) }} X</p>
+            </div>
+            <div class="grid" *ngIf="businessType == 'pledge'">
+                <p class="label" translate>DRAWBACKING</p>
+                <p class="value">{{ 0 | coinDisplay }}</p>
+            </div>
+        </div>
+
+        <div class="pledge" *ngIf="businessType == 'pledge'">
+            <p class="label" translate>PLEDGE_AMOUNT</p>
+            <div class="input-wrapper">
+                <input type="tel" [(ngModel)]="businessAmount" placeholder="{{ 'INPUT_PLEDGE_AMOUNT' | translate }}">
+            </div>
+        </div>
+
+        <div class="pledge" *ngIf="businessType != 'pledge'">
+            <p class="label" translate>DRAWBACK_AMOUNT</p>
+            <div class="input-wrapper">
+                <input type="tel" [(ngModel)]="businessAmount" placeholder="{{ 'INPUT_DRAWBACK_AMOUNT' | translate }}">
+            </div>
+        </div>
+
+        <div class="error-text" *ngIf="amountError">{{ amountError }}</div>
+
+        <div class="confirm-button" tappable (click)="doPledge()" translate>
+            {{ businessType == 'pledge' ? ('PLEDGE' | translate) : ('DRAWBACK' | translate) }}</div>
+    </div>
+</ion-content>
+
+<app-my-tabs tab="pledge"></app-my-tabs>
+
+<app-generate-privatekey *ngIf="ifShowPasswordPrompt" promptDesc="{{ 'INPUT_PASSWORD_TIPS' | translate }}"
+    cancelText="{{ 'CANCEL' | translate }}" confirmText="{{ 'CONFIRM' | translate }}" (cancel)="cancelPrompt()"
+    (confirm)="confirmPrompt($event)"></app-generate-privatekey>

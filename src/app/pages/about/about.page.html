@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{ 'ABOUTUS' | translate }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="gray-content">
+    <div class="main">
+        <div class="title">
+            <div class="logo">
+                <img src="assets/imgs/cypherium-full-logo.svg" alt="">
+                <p class="name">{{ name }}</p>
+                <p class="version">V {{ version }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="item-list">
+        <div class="item" (click)="openWebsite()">
+            <div class="label">Website</div>
+            <div class="content">www.cypherium.io</div>
+            <div class="next"></div>
+        </div>
+        <div class="item">
+            <div class="label">Email</div>
+            <!-- <div class="content">contact@cypherium.io</div> -->
+            <div class="content"><a href="mailto:contact@cypherium.io">contact@cypherium.io</a></div>
+            <div class="next"></div>
+        </div>
+        <div class="item" (click)="openTwitter()">
+            <div class="label">Twitter</div>
+            <div class="content">twitter.com/cypheriumchain</div>
+            <div class="next"></div>
+        </div>
+        <div class="item" (click)="openGithub()">
+            <div class="label">Github</div>
+            <div class="content">github.com/cypherium</div>
+            <div class="next"></div>
+        </div>
+        <div class="item" (click)="openFacebook()">
+            <div class="label">Facebook</div>
+            <div class="content">facebook.com/CypheriumChain</div>
+            <div class="next"></div>
+        </div>
+        <div class="item" (click)="openTelegram()">
+            <div class="label">Telegram</div>
+            <div class="content">t.me/cypherium_supergroup</div>
+            <div class="next"></div>
+        </div>        
+        <div class="item" (click)="update()" tappable>
+            <div class="label" translate="">VERSION_UPDATE</div>
+        </div>
+    </div>
+</ion-content>

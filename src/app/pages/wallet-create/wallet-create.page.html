@@ -1,0 +1,61 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="full-content">
+        <div class="header">
+            <img src="./assets/imgs/cypherium-full-logo.svg" alt="">
+            <p class="title" translate>CREATE_WALLET</p>
+        </div>
+
+        <div class="container">
+            <div class="input-text-wrapper">
+                <div class="label" translate>WALLET_NAME</div>
+                <div class="input-wrapper">
+                    <input type="text" (keyup)="checkWalletName()" (keypress)= "hideKeyboard($event)" [(ngModel)]="walletName"
+                        placeholder="{{ 'INPUT_WALLET_NAME' | translate }}">
+                </div>
+            </div>
+
+            <div class="error-text" *ngIf="walletNameError">{{ walletNameError }}</div>
+
+            <div class="input-password-wrapper">
+                <div class="label" translate>NEW_PASSWORD</div>
+                <div class="input-wrapper">
+                    <input (keyup)="checkPassword()" (keypress)= "hideKeyboard($event)" [type]="ifEyeOpen ? 'text' : 'password'" [(ngModel)]="password"
+                        placeholder="{{ 'WALLET_RULE' | translate }}">
+                </div>
+
+                <div class="eye" tappable (click)="toggleEyeOpen()" [ngClass]="ifEyeOpen ? 'eye-open' : 'eye-close'">
+                </div>
+            </div>
+
+            <div class="error-text" *ngIf="passwordError">{{ passwordError }}</div>
+
+            <div class="input-password-wrapper">
+                <div class="label" translate>REPEAT_PASSWORD</div>
+                <div class="input-wrapper">
+                    <input (keyup)="checkPassword1()" (keypress)= "hideKeyboard($event)" [type]="ifEyeOpen1 ? 'text' : 'password'" [(ngModel)]="password1"
+                        placeholder="{{ 'CONFIRM_PASSWORD' | translate }}">
+                </div>
+                <div class="eye" tappable (click)="toggleEyeOpen1()" [ngClass]="ifEyeOpen1 ? 'eye-open' : 'eye-close'">
+                </div>
+            </div>
+
+            <div class="error-text" *ngIf="passwordError1">{{ passwordError1 }}</div>
+
+            <div class="buttons">
+                <div class="confirm-button" (click)="createWallet()" 
+                [ngClass]="(walletNameError || passwordError || passwordError1 || !password1 || !password || !walletName) ? 'disabled' : ''"
+                translate>NEXT</div>
+                <div class="confirm-button" tappable (click)="importWallet()" translate>IMPORT_WALLET
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

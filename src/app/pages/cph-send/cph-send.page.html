@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <!-- <ion-buttons slot="start">
+            <ion-button (click)="back()">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons> -->
+        <ion-title>{{ 'SEND' | translate }}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button tappable (click)="scan()">
+                <ion-icon size="small" slot="icon-only" src="assets/imgs/scan.svg"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="main">
+        <div class="input-text-wrapper">
+            <div class="label">
+                <div class="desc">{{ 'SEND_AMOUNT' | translate }}</div>
+                <div class="amount">
+                    <span class="tip">{{ 'BALANCE' | translate }}</span> {{ amount | coinDisplay }} CPH
+                </div>
+            </div>
+            <div class="input-wrapper">
+                <input type="number" inputmode='decimal' (keyup)="checkAmount()" (keypress)= "hideKeyboard($event)" [(ngModel)]="payAmount"
+                    placeholder="{{ 'INPUT_AMOUNT_TIPS' | translate }}">
+            </div>
+        </div>
+        <div class="error-text" *ngIf="amountError">{{ amountError }}</div>
+
+        <div class="input-text-wrapper">
+            <div class="label" translate>RECEIVE_ADDRESS</div>
+            <div class="input-wrapper">
+                <input type="text" (keyup)="checkAddr()" (keypress)= "hideKeyboard($event)" [(ngModel)]="receiveAddress"
+                    placeholder="{{ 'INPUT_ADDR_TIPS' | translate }}">
+            </div>
+        </div>
+        <div class="error-text" *ngIf="addressError">{{ addressError }}</div>
+
+        <div class="range-wrapper">
+            <div class="label">
+                <div class="desc" translate>MINER_FEE</div>
+                <div class="amount">
+                    <span class="tip">{{ (range * 21000 / 1000000000) | coinDisplay }} CPH</span>
+                </div>
+            </div>
+
+            <div class="range">
+                <ion-range mode="ios" (ionChange)="changeRange($event)" [(ngModel)]="range" [min]="min"
+                    [max]="max"></ion-range>
+                <ion-label class="desc">
+                    <p translate>SLOW</p>
+                    <p translate>QUICK</p>
+                </ion-label>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="confirm-button"
+        [ngClass]="(!payAmount || addressError || amountError || !receiveAddress || !amount) ? 'disabled' : ''"
+        (click)="transferConfirm()" translate="">
+        CONFIRM</div>
+        <!-- <div>    <ion-button (click)="showFingerprintAuthDlg()">show fingerprint auth dialog  </ion-button>
+        </div> -->
+</ion-content>
+
+<app-generate-privatekey *ngIf="ifShowPasswordPrompt" promptDesc="{{ 'INPUT_PASSWORD_TIPS' | translate }}"
+    cancelText="{{ 'CANCEL' | translate }}" confirmText="{{ 'CONFIRM' | translate }}" (cancel)="cancelPrompt()"
+    (confirm)="confirmPrompt($event)"></app-generate-privatekey>
+
+<app-alert [title]="alertTitle" [desc]="alertDesc" *ngIf="ifShowAlert" cancelText="{{ 'CANCEL' | translate }}"
+    (cancel)="cancelAlert()" confirmText="{{ 'CONFIRM' | translate }}" (confirm)="confirmAlert()">
+</app-alert>

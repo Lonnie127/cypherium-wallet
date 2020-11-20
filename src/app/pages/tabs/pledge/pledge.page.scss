@@ -1,0 +1,184 @@
+ion-header ion-toolbar {
+    overflow: hidden;
+    --background: var(--ion-color-primary);
+}
+
+$headerHeight: 44px;
+$pagePadding: 18px;
+
+.header {
+    background: var(--ion-color-primary);
+    border-radius: 0px 0px 25px 25px;
+    height: 212px;
+    // padding-top: 44px;
+    color: #fff;
+
+    .title {
+        height: $headerHeight;
+
+        .text {
+            font-size: 17px;
+            line-height: $headerHeight;
+            text-align: center;
+            margin: 0;
+        }
+    }
+
+    .info {
+        color: #fff;
+        margin: 0 $pagePadding;
+        background: url(../../../../assets/imgs/pledge-banner@2x.png) center center no-repeat;
+        background-size: cover;
+        height: 125px;
+        padding: 30px 20px 0;
+
+        .text {
+            font-size: 22px;
+            line-height: 32px;
+            font-weight: bold;
+        }
+
+        .desc {
+            font-size: 14px;
+            line-height: 24px;
+        }
+    }
+}
+
+.tab-btns {
+    background: #FFFFFF;
+    background-image: linear-gradient(-180deg, rgba(255, 255, 255, 0.00) 11%, rgba(255, 255, 255, 0.84) 83%);
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06), 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    height: 48px;
+    margin: 0 $pagePadding;
+    display: flex;
+    margin-top: -24px;
+
+    .money {
+        flex: 1;
+        display: flex;
+        font-size: 14px;
+        color: #8E8E8E;
+        line-height: 46px;
+
+        .text {
+            border-bottom: 2px solid #fff;
+            padding: 0 2px;
+            margin: 0 auto;
+        }
+
+        &.focus {
+            .text {
+                color: var(--ion-color-primary);
+                border-color: var(--ion-color-primary);
+            }
+        }
+
+        .icon {
+            background: url(../../../../assets/imgs/receive.svg) center center no-repeat;
+            width: 36px;
+            height: 36px;
+            background-size: contain;
+            margin-right: 6px;
+        }
+
+        &.transfer {
+            .icon {
+                background-image: url(../../../../assets/imgs/transfer.svg);
+            }
+        }
+    }
+
+}
+
+.main-content {
+    margin: 10px 18px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.06), 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    padding: 0 20px 24px;
+
+    .title {
+        height: 44px;
+        line-height: 44px;
+        font-size: 14px;
+        color: #000000;
+        display: flex;
+
+        .faq {
+            background: url(../../../../assets/imgs/tips.svg) center center no-repeat;
+            background-size: 14px 14px;
+            width: 24px;
+            height: 44px;
+        }
+    }
+
+    .address {
+        background: #F8F8F8;
+        border: 1px solid #E8E8E8;
+        border-radius: 5px;
+        font-size: 14px;
+        color: #000000;
+        line-height: 16px;
+        padding: 12px;
+    }
+
+    .content-grid {
+        overflow: hidden;
+        padding: 8px 0;
+
+        .grid {
+            width: 50%;
+            float: left;
+            padding: 8px 0;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #999999;
+            line-height: 16px;
+        }
+
+        .value {
+            font-size: 16px;
+            line-height: 20px;
+            margin-top: 5px;
+            color: #000000;
+            font-weight: 500;
+        }
+    }
+
+    .pledge {
+        font-size: 14px;
+        color: #000000;
+        line-height: 44px;
+        border-top: 1px solid #E8E8E8;
+
+        .input-wrapper {
+            border: 1px solid #E8E8E8;
+            height: 48px;
+        }
+
+        input {
+            background: #F8F8F8;
+            border-radius: 5px;
+            text-indent: 10px;
+            height: 48px;
+            line-height: normal;
+            font-size: 16px;
+            color: #333;
+            width: 100%;
+            font-size: 14px;
+
+            &::placeholder {
+                font-size: 14px;
+                color: #999;
+            }
+        }
+    }
+
+    .confirm-button {
+        margin-top: 24px;
+    }
+}

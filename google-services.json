@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "380226338398",
+    "firebase_url": "https://cphwallet.firebaseio.com",
+    "project_id": "cphwallet",
+    "storage_bucket": "cphwallet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380226338398:android:dd7c5da96961549ec2fecf",
+        "android_client_info": {
+          "package_name": "cph.mobile.wallet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380226338398-tnptgvvoot4gflb31mm00vrabrv2fl45.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4uA3KGw0gSb-2mp6_cCzHEtNpY1CyUw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380226338398-tnptgvvoot4gflb31mm00vrabrv2fl45.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

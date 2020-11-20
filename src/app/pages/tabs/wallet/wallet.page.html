@@ -1,0 +1,102 @@
+<ion-header no-border>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button class="menu" tappable (click)="showWalletList()"></ion-button>
+        </ion-buttons>
+        <ion-title>
+            {{ wallet.name }}
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button tappable (click)="scan()">
+                <ion-icon size="small" slot="icon-only" src="assets/imgs/scan.svg"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <div class="wrapper">
+        <div class="header">
+            <div class="info">
+                <p class="desc" translate>BALANCE</p>
+                <div class="amount">
+                    <p class="value">{{ amount | coinDisplay }}</p>
+                </div>
+                <div class="wallet">
+                    <p class="text">{{ wallet.addr | addCphEllipsis }}</p>
+                    <div class="copy" tappable (click)="copyAddr()"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="btns">
+            <div class="money transfer" (click)="goCphSend()" tappable>
+                <div class="icon"></div>
+                <p class="text" translate>SEND</p>
+            </div>
+            <div class="money receive" (click)="goCphReceive()" tappable>
+                <div class="icon"></div>
+                <p class="text" translate>RECEIVE</p>
+            </div>
+        </div>
+
+        <div class="wallet-list" tappable (click)="goWalletDetail()">
+            <div class="wallet">
+                <div class="icon"></div>
+                <div class="name">CPH</div>
+                <div class="amount">
+                    <p class="value">{{ amount | coinDisplay }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>
+
+<app-my-tabs tab="wallet"></app-my-tabs>
+
+<div class="select-wallet" tappable *ngIf="ifShowWalletList">
+    <div class="bg" tappable (click)="closeWalletDialog()"></div>
+    <div class="wallet-wrapper">
+        <div class="title">
+            <div class="label" translate>SELECT_WALLET</div>
+            <div class="add" tappable (click)="addWallet()" *ngIf="global.gWalletList.length < global.maxWalletNum">
+            </div>
+        </div>
+
+<ion-list>
+    <ion-item-sliding *ngFor="let wallet of global.gWalletList; let i = index" [attr.track]="0">
+        <ion-item color="primary" tappable (click)="toggleWallet(i, wallet)"
+                [ngClass]="this.wallet.walletAddr == wallet.walletAddr ? 'selected' : ''">
+            <ion-label class="wallet-label">
+                <h3>{{ wallet.name }}</h3>
+                <p>{{ wallet.addr | addCphEllipsis }}</p>
+            </ion-label>
+        </ion-item>
+        <ion-item-options>
+            <!-- <ion-item-option color="favorite" (click)="addFavorite(slidingItem, session)">
+                Favorite
+            </ion-item-option> -->
+            <!-- <ion-item-option color="danger" (click)="removeFavorite(slidingItem, session, 'Remove Favorite')"
+                *ngIf="segment === 'favorites'"> -->
+                <ion-item-option color="warning" (click)="deletWallet(i, wallet)">
+                Remove
+            </ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding>
+</ion-list>
+        <!-- <div class="wallet-list" *ngFor="let wallet of global.gWalletList; let i = index">
+            <div class="wallet" tappable (click)="toggleWallet(i, wallet)"
+                [ngClass]="this.wallet.walletAddr == wallet.walletAddr ? 'selected' : ''">
+                <div class="wallet-name">{{ wallet.name }}</div>
+                <div class="address">{{ wallet.addr | addCphEllipsis }}</div>
+            </div>
+        </div> -->
+    </div>
+</div>
+
+<app-alert [title]="alertTitle" [desc]="alertDesc" *ngIf="ifShowAlert" cancelText="{{ 'CANCEL' | translate }}"
+    (cancel)="cancelAlert()" confirmText="{{ 'CONFIRM' | translate }}" (confirm)="confirmAlert()">
+</app-alert>
+
+<app-generate-privatekey [needIndex] = "needIndex" *ngIf="ifShowPasswordPrompt" promptDesc="{{ 'INPUT_PASSWORD_TIPS' | translate }}"
+    cancelText="{{ 'CANCEL' | translate }}" confirmText="{{ 'CONFIRM' | translate }}" (cancel)="cancelPrompt()"
+    (confirm)="confirmPrompt($event)"></app-generate-privatekey>

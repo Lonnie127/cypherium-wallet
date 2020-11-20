@@ -1,0 +1,15 @@
+<ion-content>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button outline (click)="dismiss(false)">Cancel</ion-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">{{ title }}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button outline (click)="forgotPinCode()">Forgot</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  <app-keypad [codeViewStyle]="codeViewStyle" (change)="eventCapture($event)"></app-keypad>
+      <app-generate-privatekey *ngIf="ifShowPasswordPrompt" promptDesc="{{ 'INPUT_PASSWORD_TIPS' | translate }}"
+        cancelText="{{ 'CANCEL' | translate }}" confirmText="{{ 'CONFIRM' | translate }}" (cancel)="cancelPrompt()"
+        (confirm)="confirmPrompt($event)"></app-generate-privatekey>
+</ion-content>

@@ -1,0 +1,104 @@
+<!-- <div>  -->
+   <div class="pincode-input">
+          <ion-grid class="ion-text-center pincode-input-grid"> 
+            <ion-row class="ion-row pincode-input-row">
+                <ion-col class="ion-col">
+                    <!-- <div> -->
+                        <ion-input type="numeric" maxlength="1" class="obscured" [class.filling] = "true" [(ngModel)]="pins.pin1"></ion-input>
+                    <!-- </div> -->
+                  </ion-col>
+                  <ion-col class="ion-col">
+                    <!-- <div> -->
+                        <ion-input type="numeric" maxlength="1" [(ngModel)]="pins.pin2"></ion-input>
+
+                    <!-- </div> -->
+                  </ion-col>
+                  <ion-col class="ion-col">
+                    <!-- <div> -->
+                        <ion-input type="numeric" maxlength="1" [(ngModel)]="pins.pin3"></ion-input>
+
+                    <!-- </div> -->
+                  </ion-col>
+                  <ion-col class="ion-col">
+                    <!-- <div> -->
+                        <ion-input type="numeric" maxlength="1" [(ngModel)]="pins.pin4"></ion-input>
+
+                    <!-- </div> -->
+                  </ion-col>
+                  <ion-col class="ion-col">
+                      <!-- <div> -->
+                          <ion-input type="numeric" maxlength="1" [(ngModel)]="pins.pin5"></ion-input>
+
+                      <!-- </div> -->
+                    </ion-col>
+                    <ion-col class="ion-col">
+                      <!-- <div> -->
+                          <ion-input type="numeric" maxlength="1" [(ngModel)]="pins.pin6"></ion-input>
+
+                      <!-- </div> -->
+                    </ion-col>
+
+            </ion-row>
+        </ion-grid> 
+   </div>
+
+   <div >
+      <ion-grid >
+        <ion-row>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('1')">1</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('2')">2</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('3')">3</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('4')">4</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('5')">5</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('6')">6</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('7')">7</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('8')">8</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round (click)="handleInput('9')">9</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+              <ion-button color="warning" size="" expand="block" round (click)="handleInput('clear')">C</ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="medium" size="" expand="block" round   (click)="handleInput('0')">0</ion-button>
+          </ion-col>
+          <ion-col>
+              <ion-button color="primary" size="" expand="block" round [disabled] = "pinLen() != 6" (click)="emitEvent()">OK</ion-button>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row>
+          <ion-col>
+            <ion-button color="primary" round (click)="handleInput('clear')">Temizle</ion-button>
+          </ion-col>
+          <ion-col>
+  
+          </ion-col>
+          <ion-col>
+            <ion-button color="primary" ound (click)="emitEvent()">Tamam</ion-button>
+          </ion-col>
+        </ion-row> -->
+      </ion-grid>
+    </div>
+<!-- </div>-->
