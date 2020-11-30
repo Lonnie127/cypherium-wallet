@@ -276,36 +276,36 @@ export class CphSendPage implements OnInit {
             return;
         }
         //Direct the user to enter a password
-        // this.ifShowPasswordPrompt = true;
+         this.ifShowPasswordPrompt = true;
 
         //Direct the user to enter a payment password PinCode
         // this.presentModal();
 
         //Guide users to use face recognition or fingerprint recognition
-        this.wallet.isAskForBiometric
-        this.fingerAuth.isAvailable().then(result =>{
-            console.log('showFingerprintAuthDlg'+result)
-              this.fingerAuth.show({
-                // clientId: 'fingerprint-Demo',
-                // clientSecret: 'password', //Only necessary for Android
-                // disableBackup:true  //Only for Android(optional)
-              //   title:"face id",
-              //   subtitle:"face id test",
-                description: "Pay with biometric"
-            })
-              .then((result: any) => {
-                  console.log('fingerAuth.show'+result);
-                })
-              .catch((error: any) => {
-                  console.log('fingerAuth.show error'+error.message);
-                //Direct the user to enter a password
-                this.ifShowPasswordPrompt = true;
-              });
-          }).catch((error: any) => {
-              console.log('showFingerprintAuthDlg error'+error.message);
-            //Direct the user to enter a password
-            this.ifShowPasswordPrompt = true;
-        });
+        // this.wallet.isAskForBiometric
+        // this.fingerAuth.isAvailable().then(result =>{
+        //     console.log('showFingerprintAuthDlg'+result)
+        //       this.fingerAuth.show({
+        //         // clientId: 'fingerprint-Demo',
+        //         // clientSecret: 'password', //Only necessary for Android
+        //         // disableBackup:true  //Only for Android(optional)
+        //       //   title:"face id",
+        //       //   subtitle:"face id test",
+        //         description: "Pay with biometric"
+        //     })
+        //       .then((result: any) => {
+        //           console.log('fingerAuth.show'+result);
+        //         })
+        //       .catch((error: any) => {
+        //           console.log('fingerAuth.show error'+error.message);
+        //         //Direct the user to enter a password
+        //         this.ifShowPasswordPrompt = true;
+        //       });
+        //   }).catch((error: any) => {
+        //       console.log('showFingerprintAuthDlg error'+error.message);
+        //     //Direct the user to enter a password
+        //     this.ifShowPasswordPrompt = true;
+        // });
 
     }
 
