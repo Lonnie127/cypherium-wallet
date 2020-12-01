@@ -4,7 +4,7 @@ import { Storage } from "@ionic/storage";
 import { GlobalService } from "../global/global.service";
 
 import { Observable } from 'rxjs';
-import * as Wallet from 'ethereumjs-wallet';
+import * as Wallet from 'cypheriumjs-wallet';
 import * as cyphers from 'ethers';
 import { TranslateService } from "@ngx-translate/core";
 
