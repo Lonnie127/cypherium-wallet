@@ -114,7 +114,7 @@ export class HelperService {
         }
         console.log(privateKey)
         let wallet = Wallet.fromPrivateKey(privateKey);
-        //生成keystore
+        //generate keystore
         let keystore = wallet.toV3(password, {
             n: 1024
         });

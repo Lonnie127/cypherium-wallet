@@ -30,6 +30,8 @@ const routes: Routes = [
     { path: 'wallet-name', loadChildren: './pages/wallet-name/wallet-name.module#WalletNamePageModule' },
     { path: 'export-privatekey', loadChildren: './pages/export-privatekey/export-privatekey.module#ExportPrivatekeyPageModule' },
     { path: 'scan', loadChildren: './pages/scan/scan.module#ScanPageModule' },
+    { path: 'payment-password', loadChildren: './pages/payment-password/payment-password.module#PaymentPasswordPageModule' },
+
 ];
 @NgModule({
     imports: [

@@ -261,7 +261,7 @@ export class WalletImportPage implements OnInit {
                     action: 'create'
                 }
             };
-            this.navCtrl.navigateRoot('wallet', navigationExtras);
+            this.navCtrl.navigateRoot('payment-password', navigationExtras);
         })
     }
 
