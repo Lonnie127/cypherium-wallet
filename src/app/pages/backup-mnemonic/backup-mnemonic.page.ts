@@ -82,7 +82,7 @@ export class BackupMnemonicPage implements OnInit {
                     action: 'create'
                 }
             };
-            this.navCtrl.navigateRoot('payment-password', navigationExtras);
+            this.navCtrl.navigateRoot('wallet', navigationExtras);
         } else {
             let error = await this.helper.getTranslate('MNEMONIC_WRONG');
             this.helper.toast(error);

@@ -121,7 +121,7 @@ export class WalletImportPage implements OnInit {
     }
 
     async checkPassword() {
-        //为兼容旧版的密码设置规则
+        //Set rules for passwords that are compatible with older versions
         if (this.type == 'keystore') {
             if (!this.password) {
                 let message = await this.helper.getTranslate('PASSWORD_EMPTY');
@@ -178,7 +178,7 @@ export class WalletImportPage implements OnInit {
 
     importMnemonicWallet() {
         let mnemonic = this.mnemonic.replace(/^\s+|\s+$/, '');
-        mnemonic = mnemonic.replace(/\s{2,}/g, ' '); // 替换多个空格为1个
+        mnemonic = mnemonic.replace(/\s{2,}/g, ' '); // Replace multiple Spaces with one space
         let wallet = this.Wallet.fromMnemonic(mnemonic);
         return wallet;
     }
@@ -238,7 +238,7 @@ export class WalletImportPage implements OnInit {
                 return;
             }
             console.log("Wallet import succeed...", wallet);
-            //检测钱包是否重复
+            //Check for duplicates in wallets
             let found = this.global.gWalletList.find(item => item.addr === wallet.address);
             if (found) {
                 if (this.type === 'keystore') {
@@ -261,7 +261,7 @@ export class WalletImportPage implements OnInit {
                     action: 'create'
                 }
             };
-            this.navCtrl.navigateRoot('payment-password', navigationExtras);
+            this.navCtrl.navigateRoot('wallet', navigationExtras);
         })
     }
 
