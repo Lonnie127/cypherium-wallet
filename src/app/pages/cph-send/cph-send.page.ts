@@ -279,7 +279,7 @@ export class CphSendPage implements OnInit {
          this.ifShowPasswordPrompt = true;
 
         //Direct the user to enter a payment password PinCode
-        // this.presentModal();
+        //this.presentModal();
 
         //Guide users to use face recognition or fingerprint recognition
         // this.wallet.isAskForBiometric
