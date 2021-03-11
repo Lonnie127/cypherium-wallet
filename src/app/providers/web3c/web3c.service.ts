@@ -120,7 +120,7 @@ export class Web3Service {
         let tx = await this.generateCphTx(from, to, value, gasPrice, privateKey);
         console.log("Transaction signature：", tx)
         const serializedTx = tx.serialize();
-        this.web3c.cph.sendRawTransaction('0x' + serializedTx.toString('hex'), callback);
+        this.web3c.cph.sendRawTransaction('0x' + serializedTx.toString('hex').replace('0x', ''), callback);
 
     }
 
@@ -145,7 +145,7 @@ export class Web3Service {
         } catch (error) {
             var nonce = await this.web3c.cph.getTransactionCount('0x' + from); //Get the address of the user's walletnonce
         }
-        console.log("Nonce为" + nonce);
+        console.log("Nonce is" + nonce);
         // let gasLimit = await this.web3c.cph.estimateGas({
         //     "from": '0x'+from,
         //     "nonce": nonce,
@@ -157,13 +157,13 @@ export class Web3Service {
         // console.log("chainId:", chainId);
         const txParams = {
             version: '0x122',
-            senderKey: '0x' + privateKey.substring(64, 128),
-            from: from,
+            senderKey: '0x' + privateKey.substring(64, 128).replace('0x', ''),
+            from: '0x' + from.toLowerCase().replace('0x', ''),
             nonce: nonce,
             // gas: this.convert10to16(gasLimit),
             gasLimit: '0x5208',
             gasPrice: this.convert10to16(gasPrice),
-            to: to,
+            to: '0x' + to.replace('0x', ''),
             data: data,
             value: this.convert10to16(value)
             // chainId: chainId
