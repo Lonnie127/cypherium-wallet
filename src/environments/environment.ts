@@ -7,7 +7,7 @@ export const environment = {
     requestTimeout: 30000,
     appServerUrl: "https://cyphercomb.xyz", //APPServer API
     cypherium: {
-        provider: 'http://52.168.18.107:8000',
+        provider: 'http://137.117.70.161:8000',
         pledgeContractAddr: '0x0000000000000000000000000000000000000081',
         pledgeContractAbi: null,
         privateKey: ''
