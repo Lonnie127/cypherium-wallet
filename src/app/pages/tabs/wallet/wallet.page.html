@@ -22,7 +22,7 @@
                     <p class="value">{{ amount | coinDisplay }}</p>
                 </div>
                 <div class="wallet">
-                    <p class="text">{{ wallet.addr | addCphEllipsis }}</p>
+                    <p class="text">{{ wallet.bech32address  }}</p>
                     <div class="copy" tappable (click)="copyAddr()"></div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                 [ngClass]="this.wallet.walletAddr == wallet.walletAddr ? 'selected' : ''">
             <ion-label class="wallet-label">
                 <h3>{{ wallet.name }}</h3>
-                <p>{{ wallet.addr | addCphEllipsis }}</p>
+                <p>{{ wallet.bech32address }}</p>
             </ion-label>
         </ion-item>
         <ion-item-options>
@@ -87,7 +87,7 @@
             <div class="wallet" tappable (click)="toggleWallet(i, wallet)"
                 [ngClass]="this.wallet.walletAddr == wallet.walletAddr ? 'selected' : ''">
                 <div class="wallet-name">{{ wallet.name }}</div>
-                <div class="address">{{ wallet.addr | addCphEllipsis }}</div>
+                <div class="address">{{ wallet.bech32address }}</div>
             </div>
         </div> -->
     </div>

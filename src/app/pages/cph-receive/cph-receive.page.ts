@@ -6,6 +6,7 @@ import { HelperService } from '../../providers/helper/helper.service';
 import { Storage } from '@ionic/storage';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import {bech32} from 'cypheriumjs-crypto';
 
 @Component({
     selector: 'app-cph-receive',
@@ -16,6 +17,7 @@ export class CphReceivePage implements OnInit {
     qrcode = "";
     wallet: any = "";
     addr = '';
+    bech32address = '';
 
     constructor(
         private router: Router,
@@ -24,7 +26,10 @@ export class CphReceivePage implements OnInit {
         public global: GlobalService,
         public nav: NavController,
         private storage: Storage,
-    ) { }
+    ) {
+
+
+    }
 
     // back() {
     //     this.nav.navigateBack('/wallet');
@@ -36,20 +41,16 @@ export class CphReceivePage implements OnInit {
     }
 
     async copyAddr() {
-        this.clipboard.copy(this.addr);
+        this.clipboard.copy(this.wallet.addr);
         let error = await this.helper.getTranslate('COPY_WALLET_SUCCEED');
         this.helper.toast(error);
     }
 
     makeQrcode() {
-        // var qr = qrcode(16, "L");
-        let addr = this.helper.convertAddr(this.wallet.addr);
-        this.addr = addr;
-        this.qrcode = "cph://account/transfer/" + 'cph'+ this.wallet.addr;
-        // this.addr = addr;
-        // qr.addData(addr);
-        // qr.make();
-        // this.qrcode = qr.createImgTag();
+        console.log("addr", this.wallet.addr)
+        this.wallet.bech32address = bech32.toBech32Address(this.wallet.addr);
+        console.log("bech32address", this.wallet.bech32address)
+        this.qrcode = "cph://account/transfer/" + this.wallet.bech32address;
     }
 
 }

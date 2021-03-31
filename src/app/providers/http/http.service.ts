@@ -184,8 +184,8 @@ export class HttpService extends HttpHelperService {
             return errData;
         }
         if (this.helper.isMobile() && !this.native.isConnecting()) {
-            let info = await this.getTranslate('NETWORK_ERROR');
-            this.helper.alert(info);
+            //let info = await this.getTranslate('NETWORK_ERROR');
+            //this.helper.alert(info);
         } else if (err instanceof TimeoutError) {
             let tips = await this.getTranslate('TIPS');
             let info = await this.getTranslate('NETWORK_TIMEOUT');

@@ -69,7 +69,7 @@
     "core-js": "^2.5.4",
     "crypto": "git+https://github.com/Gozala/crypto.git",
     "crypto-browserify": "^3.12.0",
-    "cypheriumjs-crypto": "^0.1.7",
+    "cypheriumjs-crypto": "^0.1.9",
     "cypheriumjs-tx": "^0.1.6",
     "cypheriumjs-wallet": "^0.10.1",
     "cypheriumjs-util": "^0.1.0",

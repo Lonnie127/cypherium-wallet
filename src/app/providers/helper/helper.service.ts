@@ -41,7 +41,7 @@ export class HelperService {
         if (!w.keystore) {
             w.keystore = JSON.stringify(this.exportKeystore(w.privateKey, password));
         }
-        let wallet = {
+       let wallet = {
             // name: w.walletName || this.global.projectName + '-wallet-' + w.address.slice(-4),
             name: w.name || this.global.projectName + '-' + w.address.slice(-4),
             addr: w.address,
@@ -50,6 +50,7 @@ export class HelperService {
         this.global.gWalletList.unshift(wallet);
         this.global.currentWalletIndex = 0;
         this.saveWallet();
+        password = null;
     }
 
     async getTranslate(key) {
@@ -121,8 +122,8 @@ export class HelperService {
 
     /**
      * decryptPrivateKey: Restore the wallet according to the keystore and password
-     * @param keystore 
-     * @param password 
+     * @param keystore
+     * @param password
      */
     decryptPrivateKey(keystore, password) {
         let privateKey = null, publicKey = null;
@@ -191,11 +192,6 @@ export class HelperService {
             throw new Error('Please use real machine debugging');
         }
     }
-
-    convertAddr(addr) {
-        return 'CPH' + addr.replace('0x', '');
-    }
-
     /**
      * tip in development
      */
