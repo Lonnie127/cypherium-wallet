@@ -46,6 +46,7 @@ allprojects {
       defaultCompileSdkVersion=28 //Integer - We ALWAYS compile with the latest by default
       versionCode="1"
       versionName="1.0.8"
+      applicationId="cph.mobile.walletfortest"
     }
 }
 
