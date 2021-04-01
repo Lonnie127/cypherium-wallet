@@ -123,6 +123,7 @@
 	"TRSACTION_AMOUNT": "交易金额",
 	"SEND_ADDRESS": "发送地址",
 	"RECEIVER_ADDRESS": "接收地址",
+	"YOUR_ACCOUNT": "账户",
 	"TRANSACTION_HASH": "交易hash",
 	"BLOCKCHAIN_HEIGHT": "区块高度",
 	"TRANSACTION_TIME": "交易时间",

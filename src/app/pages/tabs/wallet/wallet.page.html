@@ -17,17 +17,16 @@
     <div class="wrapper">
         <div class="header">
             <div class="info">
-                <p class="desc" translate>BALANCE</p>
+                <p class="desc" translate>WALLET_ASSET</p>
                 <div class="amount">
-                    <p class="value">{{ amount | coinDisplay }}</p>
+                    <div class class="value">{{ amount | coinDisplay }}</div>
                 </div>
                 <div class="wallet">
-                    <p class="text">{{ wallet.bech32address  }}</p>
+                    <p class="text">{{ wallet.addr | addCphEllipsis }}</p>
                     <div class="copy" tappable (click)="copyAddr()"></div>
                 </div>
             </div>
         </div>
-
         <div class="btns">
             <div class="money transfer" (click)="goCphSend()" tappable>
                 <div class="icon"></div>
