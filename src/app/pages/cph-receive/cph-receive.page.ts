@@ -6,7 +6,7 @@ import { HelperService } from '../../providers/helper/helper.service';
 import { Storage } from '@ionic/storage';
 import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import {bech32} from 'cypheriumjs-crypto';
+import { WalletService } from '../../providers/wallet/wallet.service';
 
 @Component({
     selector: 'app-cph-receive',
@@ -26,6 +26,8 @@ export class CphReceivePage implements OnInit {
         public global: GlobalService,
         public nav: NavController,
         private storage: Storage,
+        private ws: WalletService,
+
     ) {
 
 
@@ -48,7 +50,7 @@ export class CphReceivePage implements OnInit {
 
     makeQrcode() {
         console.log("addr", this.wallet.addr)
-        this.wallet.bech32address = bech32.toBech32Address(this.wallet.addr);
+        this.wallet.bech32address = this.ws.toBech32Address(this.wallet.addr);
         console.log("bech32address", this.wallet.bech32address)
         this.qrcode = "cph://account/transfer/" + this.wallet.bech32address;
     }

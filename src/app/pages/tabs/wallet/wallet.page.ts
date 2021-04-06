@@ -8,7 +8,8 @@ import { HttpService } from "../../../providers/http/http.service";
 import { NativeService } from '../../../providers/native/native.service';
 import { Events, NavController } from '@ionic/angular';
 import { NgZone } from "@angular/core";
-import { bech32 } from 'cypheriumjs-crypto';
+import { WalletService } from '../../../providers/wallet/wallet.service';
+
 
 @Component({
     selector: 'app-wallet',
@@ -38,6 +39,7 @@ export class WalletPage implements OnInit {
         private helper: HelperService,
         public global: GlobalService,
         private web3c: Web3Service,
+        private ws: WalletService,
         private http: HttpService,
         private storage: Storage,
         private native: NativeService,
@@ -55,7 +57,7 @@ export class WalletPage implements OnInit {
     async ionViewDidEnter() {
         console.log("wallet ngoninit +++++++++...");
         this.wallet = this.global.gWalletList[this.global.currentWalletIndex || 0] || {};
-        this.wallet.bech32address = bech32.toBech32Address(this.wallet.addr);
+        this.wallet.bech32address = this.ws.toBech32Address(this.wallet.addr);
         console.log(this.wallet);
         this.amount = this.wallet.amount || 0;
         this.computeValue();

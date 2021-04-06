@@ -16,7 +16,7 @@ export class GlobalService {
     selectedRate: any = {};
     provider = "";
     public gOneSignal: any;
-    
+    theHrp ='crt'
     // currentWallet = {};
 
     static errorCode = {};

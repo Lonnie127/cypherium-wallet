@@ -9,6 +9,7 @@ export const environment = {
     cypherium: {
         provider: 'http://137.117.70.161:8000',
         pledgeContractAddr: '0x0000000000000000000000000000000000000081',
+        theHrp: 'crt',
         pledgeContractAbi: null,
         privateKey: ''
     }

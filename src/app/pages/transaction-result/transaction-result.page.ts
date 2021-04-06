@@ -6,7 +6,8 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { GlobalService } from '../../providers/global/global.service';
 import { HelperService } from '../../providers/helper/helper.service';
 import { NavController } from '@ionic/angular';
-import {bech32, validation } from 'cypheriumjs-crypto';
+import {validation } from 'cypheriumjs-crypto';
+import { WalletService } from '../../providers/wallet/wallet.service';
 @Component({
     selector: 'app-transaction-result',
     templateUrl: './transaction-result.page.html',
@@ -24,10 +25,12 @@ export class TransactionResultPage implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private web3c: Web3Service,
+        private ws: WalletService,
         public global: GlobalService,
         private helper: HelperService,
         public nav: NavController,
         private native: NativeService
+
     ) {
         let state = this.router.getCurrentNavigation().extras.state;
         if (state) {
@@ -80,7 +83,7 @@ export class TransactionResultPage implements OnInit {
     }
 
     goAddress(addr) {
-        this.helper.toast(bech32.toBech32Address(addr));
+        this.helper.toast(this.ws.toBech32Address(addr));
         // this.helper.getTranslate('COMING_SOON').then(msg => {
         //     this.helper.toast(msg);
         // });

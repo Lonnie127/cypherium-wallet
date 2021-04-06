@@ -10,7 +10,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { ModalController } from '@ionic/angular';
 import { PincodeModalPage } from '../pincode-modal/pincode-modal.page';
 import { FingerprintAIO ,FingerprintOptions} from '@ionic-native/fingerprint-aio/ngx';
-import {bech32, validation } from 'cypheriumjs-crypto';
+import { WalletService } from '../../providers/wallet/wallet.service';
+import { validation } from 'cypheriumjs-crypto';
 @Component({
     selector: 'app-cph-send',
     templateUrl: './cph-send.page.html',
@@ -46,8 +47,9 @@ export class CphSendPage implements OnInit {
         private native: NativeService,
         public modalController: ModalController,
         public alertController: AlertController,
-        private fingerAuth: FingerprintAIO
-    ) { 
+        private fingerAuth: FingerprintAIO,
+        private ws: WalletService
+    ) {
         let state = this.router.getCurrentNavigation().extras.state;
         if (state) {
             this.receiveAddress = state.address;
@@ -280,7 +282,7 @@ export class CphSendPage implements OnInit {
 
     async transfer(privatekey) {
         const sourcehexaddress = this.wallet.addr.replace('cph', '0x');
-        const targethexaddress = bech32.fromBech32Address(this.receiveAddress).replace('cph', '0x');
+        const targethexaddress = this.ws.fromBech32Address(this.receiveAddress).replace('cph', '0x');
         console.log('sourcehexaddress', sourcehexaddress);
         console.log('targetaddress', targethexaddress);
         this.web3c.transferCph(sourcehexaddress, targethexaddress, this.payAmount, this.range, privatekey, async (err, tx) => {

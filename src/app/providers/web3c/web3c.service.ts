@@ -5,19 +5,22 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import * as CypheriumTx from 'cypheriumjs-tx';
 import { GlobalService } from '../global/global.service';
 import { environment } from '../../../environments/environment';
-import {bech32, validation } from 'cypheriumjs-crypto';
+import {validation} from 'cypheriumjs-crypto';
+import { WalletService } from '../../providers/wallet/wallet.service';
 
 declare var Buffer;
 @Injectable({
     providedIn: 'root'
 })
+
 export class Web3Service {
     public web3c;
     private pledgeContract;
 
     constructor(
         private http: HttpClient,
-        private global: GlobalService
+        private global: GlobalService,
+        private ws: WalletService
     ) {
         this.web3c = new Web3c(new Web3c.providers.HttpProvider(this.global.provider || environment.cypherium.provider));
         this.http.get('assets/json/pledge.abi.json').subscribe((abi: any) => {
@@ -36,7 +39,7 @@ export class Web3Service {
         if (!isBech32address) {
             return -2;
         }
-        const hexaddress =  bech32.fromBech32Address(addr)
+        const hexaddress =  this.ws.fromBech32Address(addr)
         const isHexAddress = validation.isValidHexAddress(hexaddress)
         if (!isHexAddress) {
             return -2;
