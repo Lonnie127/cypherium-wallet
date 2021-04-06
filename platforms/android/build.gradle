@@ -22,6 +22,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -36,6 +37,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 
     //This replaces project.properties w.r.t. build settings
@@ -44,9 +46,6 @@ allprojects {
       defaultMinSdkVersion=19 //Integer - Minimum requirement is Android 4.4
       defaultTargetSdkVersion=28 //Integer - We ALWAYS target the latest by default
       defaultCompileSdkVersion=28 //Integer - We ALWAYS compile with the latest by default
-      versionCode="1"
-      versionName="1.0.8"
-      applicationId="cph.mobile.walletfortest"
     }
 }
 
