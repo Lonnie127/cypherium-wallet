@@ -22,7 +22,7 @@
         <ngx-qrcode [qrc-value]="qrcode" qrc-version="9"></ngx-qrcode>
 
         <div class="address">
-            <div class="label">{{ addr }}</div>
+            <div class="label">{{ wallet.bech32address }}</div>
             <div class="btn" tappable (click)="copyAddr()"></div>
         </div>
         <div class="tips">

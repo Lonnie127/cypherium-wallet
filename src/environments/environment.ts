@@ -9,6 +9,7 @@ export const environment = {
     cypherium: {
         provider: 'https://pubnodestest.cypherium.io',
         pledgeContractAddr: '0x0000000000000000000000000000000000000081',
+        theHrp: 'crt',
         pledgeContractAbi: null,
         privateKey: ''
     }

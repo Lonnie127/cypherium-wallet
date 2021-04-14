@@ -3,22 +3,24 @@ import * as Web3c from '@cypherium/web3c';
 import * as sha from 'sha.js';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import * as CypheriumTx from 'cypheriumjs-tx';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { GlobalService } from '../global/global.service';
-// import * as Secp from 'secp256k1';
 import { environment } from '../../../environments/environment';
+import {validation} from 'cypheriumjs-crypto';
+import { WalletService } from '../../providers/wallet/wallet.service';
 
 declare var Buffer;
 @Injectable({
     providedIn: 'root'
 })
+
 export class Web3Service {
     public web3c;
     private pledgeContract;
 
     constructor(
         private http: HttpClient,
-        private global: GlobalService
+        private global: GlobalService,
+        private ws: WalletService
     ) {
         this.web3c = new Web3c(new Web3c.providers.HttpProvider(this.global.provider || environment.cypherium.provider));
         this.http.get('assets/json/pledge.abi.json').subscribe((abi: any) => {
@@ -33,11 +35,16 @@ export class Web3Service {
             return -1;
         }
         addr = addr.toLowerCase();
-        if (!addr.startsWith('cph')) {
+        const isBech32address = validation.isBech32(addr)
+        if (!isBech32address) {
             return -2;
         }
-        let result = await this.web3c.isAddress('0x' + addr.slice(3));
-        return result ? 0 : -2;
+        const hexaddress =  this.ws.fromBech32Address(addr)
+        const isHexAddress = validation.isValidHexAddress(hexaddress)
+        if (!isHexAddress) {
+            return -2;
+        }
+        return  0;
     }
 
     async getBlockHeight() {
@@ -120,7 +127,7 @@ export class Web3Service {
         let tx = await this.generateCphTx(from, to, value, gasPrice, privateKey);
         console.log("Transaction signature：", tx)
         const serializedTx = tx.serialize();
-        this.web3c.cph.sendRawTransaction('0x' + serializedTx.toString('hex').replace('0x', ''), callback);
+        this.web3c.cph.sendRawTransaction('0x' + serializedTx.toString('hex'), callback);
 
     }
 

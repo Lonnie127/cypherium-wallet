@@ -6,7 +6,8 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { GlobalService } from '../../providers/global/global.service';
 import { HelperService } from '../../providers/helper/helper.service';
 import { NavController } from '@ionic/angular';
-
+import {validation } from 'cypheriumjs-crypto';
+import { WalletService } from '../../providers/wallet/wallet.service';
 @Component({
     selector: 'app-transaction-result',
     templateUrl: './transaction-result.page.html',
@@ -24,10 +25,12 @@ export class TransactionResultPage implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private web3c: Web3Service,
+        private ws: WalletService,
         public global: GlobalService,
         private helper: HelperService,
         public nav: NavController,
         private native: NativeService
+
     ) {
         let state = this.router.getCurrentNavigation().extras.state;
         if (state) {
@@ -43,7 +46,6 @@ export class TransactionResultPage implements OnInit {
     }
 
     async getDetailByTx() {
-        //查询交易信息
         this.detail = await this.web3c.getTxDetail(this.tx);
         console.log("Transaction detail：" + JSON.stringify(this.detail));
         this.miningFee = this.detail.gas * this.detail.gasPrice;
@@ -69,8 +71,8 @@ export class TransactionResultPage implements OnInit {
     }
 
     goHash(hash) {
-        hash = hash.replace('0x', '');
-        this.helper.toast('CPH' + hash.toUpperCase());
+        console.log('hash',hash)
+        this.helper.toast('0x' + hash.replace('0x', ''));
         // this.helper.getTranslate('COMING_SOON').then(msg => {
         //     this.helper.toast(msg);
         // });
@@ -81,8 +83,7 @@ export class TransactionResultPage implements OnInit {
     }
 
     goAddress(addr) {
-        addr = addr.replace('0x', '');
-        this.helper.toast('CPH' + addr.toUpperCase());
+        this.helper.toast(this.ws.toBech32Address(addr));
         // this.helper.getTranslate('COMING_SOON').then(msg => {
         //     this.helper.toast(msg);
         // });

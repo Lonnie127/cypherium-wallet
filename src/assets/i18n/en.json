@@ -124,6 +124,7 @@
 	"TRSACTION_AMOUNT": "Transaction Amount",
 	"SEND_ADDRESS": "From Address",
 	"RECEIVER_ADDRESS": "To Address",
+	"YOUR_ACCOUNT": "Your Account",
 	"TRANSACTION_HASH": "Transaction Hash",
 	"BLOCKCHAIN_HEIGHT": "Blockchain Height",
 	"TRANSACTION_TIME": "Transaction Time",

@@ -55,7 +55,7 @@ export class GeneratePrivatekeyComponent implements OnInit {
         }
         this.ifShowLoading = true;
         setTimeout(async() => {
-            //解码
+            //decode
             let ret = this.helper.decryptPrivateKey(keystore, this.paymentPassword);
             if (ret.flag) {
                 this.ifShowLoading = false;

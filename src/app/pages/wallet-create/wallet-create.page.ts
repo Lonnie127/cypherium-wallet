@@ -49,7 +49,7 @@ export class WalletCreatePage implements OnInit {
         if (await this.checkPassword1() !== "") {
             return;
         }
-        // let wallet = cyphers.Wallet.createRandom();
+        //let wallet = cyphers.Wallet.createRandom();
         let wallet = this.Wallet.createRandom();
         let navigationExtras: NavigationExtras = {
             state: {

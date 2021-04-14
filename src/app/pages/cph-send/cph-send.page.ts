@@ -10,7 +10,8 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { ModalController } from '@ionic/angular';
 import { PincodeModalPage } from '../pincode-modal/pincode-modal.page';
 import { FingerprintAIO ,FingerprintOptions} from '@ionic-native/fingerprint-aio/ngx';
-
+import { WalletService } from '../../providers/wallet/wallet.service';
+import { validation } from 'cypheriumjs-crypto';
 @Component({
     selector: 'app-cph-send',
     templateUrl: './cph-send.page.html',
@@ -46,8 +47,9 @@ export class CphSendPage implements OnInit {
         private native: NativeService,
         public modalController: ModalController,
         public alertController: AlertController,
-        private fingerAuth: FingerprintAIO
-    ) { 
+        private fingerAuth: FingerprintAIO,
+        private ws: WalletService
+    ) {
         let state = this.router.getCurrentNavigation().extras.state;
         if (state) {
             this.receiveAddress = state.address;
@@ -270,48 +272,20 @@ export class CphSendPage implements OnInit {
         if (this.amountError) {
             return;
         }
-
         await this.checkAddr();
         if (this.addressError) {
             return;
         }
         //Direct the user to enter a password
-         this.ifShowPasswordPrompt = true;
-
-        //Direct the user to enter a payment password PinCode
-        //this.presentModal();
-
-        //Guide users to use face recognition or fingerprint recognition
-        // this.wallet.isAskForBiometric
-        // this.fingerAuth.isAvailable().then(result =>{
-        //     console.log('showFingerprintAuthDlg'+result)
-        //       this.fingerAuth.show({
-        //         // clientId: 'fingerprint-Demo',
-        //         // clientSecret: 'password', //Only necessary for Android
-        //         // disableBackup:true  //Only for Android(optional)
-        //       //   title:"face id",
-        //       //   subtitle:"face id test",
-        //         description: "Pay with biometric"
-        //     })
-        //       .then((result: any) => {
-        //           console.log('fingerAuth.show'+result);
-        //         })
-        //       .catch((error: any) => {
-        //           console.log('fingerAuth.show error'+error.message);
-        //         //Direct the user to enter a password
-        //         this.ifShowPasswordPrompt = true;
-        //       });
-        //   }).catch((error: any) => {
-        //       console.log('showFingerprintAuthDlg error'+error.message);
-        //     //Direct the user to enter a password
-        //     this.ifShowPasswordPrompt = true;
-        // });
-
+        this.ifShowPasswordPrompt = true;
     }
 
     async transfer(privatekey) {
-        let address = this.receiveAddress.toLowerCase().replace('cph', '0x');
-        this.web3c.transferCph(this.wallet.addr, address, this.payAmount, this.range, privatekey, async (err, tx) => {
+        const sourcehexaddress = this.wallet.addr.replace('cph', '0x');
+        const targethexaddress = this.ws.fromBech32Address(this.receiveAddress).replace('cph', '0x');
+        console.log('sourcehexaddress', sourcehexaddress);
+        console.log('targetaddress', targethexaddress);
+        this.web3c.transferCph(sourcehexaddress, targethexaddress, this.payAmount, this.range, privatekey, async (err, tx) => {
             console.log("Transaction callback.......", err, tx);
             if (err === null) {
                 // resolve(tx);
