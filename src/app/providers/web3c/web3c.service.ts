@@ -105,7 +105,7 @@ export class Web3Service {
         amount = this.web3c.toWei(amount + "", 'cpher');
         let gasPrice = await this.web3c.cph.getGasPrice();
         if (!gasPrice || gasPrice == '0') {
-            gasPrice = this.web3c.toWei(20, 'gwei');
+            gasPrice = this.web3c.toWei(18, 'gwei');
         }
         let params = type == 'mortgage' ? [from, amount] : [amount];
         let tx = await this.generateCphTx(from, environment.cypherium.pledgeContractAddr, '0x0', gasPrice, privateKey, 'pledgeContract', type, params);
@@ -116,7 +116,11 @@ export class Web3Service {
     async transferCph(from, to, value, gasPrice, privateKey, callback) {
         console.log(`initiate transfer----from:${from},to:${to},value:${value}`);
         value = this.web3c.toWei(value, 'cpher');
-        gasPrice = this.web3c.toWei(gasPrice + "", 'gwei');
+        if (!gasPrice || gasPrice == '0') {
+            gasPrice = this.web3c.toWei(18, 'gwei');
+        } else {
+            gasPrice = this.web3c.toWei(gasPrice + "", 'gwei');
+        }
         let tx = await this.generateCphTx(from, to, value, gasPrice, privateKey);
         console.log("Transaction signature：", tx)
         const serializedTx = tx.serialize();
