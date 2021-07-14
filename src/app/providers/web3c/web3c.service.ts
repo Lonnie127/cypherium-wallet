@@ -12,6 +12,8 @@ declare var Buffer;
 @Injectable({
     providedIn: 'root'
 })
+const TX_VERSION = '0x122';
+const TX_DEFAULT_GASLIMIT = '0x5208';
 export class Web3Service {
     public web3c;
     private pledgeContract;
@@ -64,9 +66,6 @@ export class Web3Service {
         console.log('getCphBalance');
         this.web3c.cph.getBalance(userAddr, pending ? 'pending' : 'latest', (e,v) => {
             if (!e) {
-                console.log('!e');
-                console.log("Invoked param:-----------------------------------", userAddr, v);
-                console.log(`wallet${userAddr}'s balance${v}`);
                 let value = this.web3c.fromWei(v, 'cpher');
                 callback(value);
             } else {
@@ -77,17 +76,11 @@ export class Web3Service {
                 } else {
                     callback(0);
                 }
-                // let error = await this.helper.getTranslate('MNEMONIC_WRONG');
-                // this.helper.toast(error);
-
             }
         });
     }
 
     getMortage(from) {
-        // let value = await this.pledgeContract.methods.mortgageOf(from).call({ from: from });
-        // value = this.web3c.fromWei(value + "", 'cpher');
-        // return value;
         return new Promise((resolve, reject) => {
             this.pledgeContract.methods.mortgageOf(from).call({ from: from }, (err, result) => {
                 if (err) {
@@ -150,11 +143,11 @@ export class Web3Service {
             var nonce = await this.web3c.cph.getTransactionCount('0x' + from); //Get the address of the user's walletnonce
         }
         const txParams = {
-            version: '0x122',
+            version: TX_VERSION,
             senderKey: '0x' + privateKey.substring(64, 128),
             from: from,
             nonce: nonce,
-            gasLimit: '0x5208',
+            gasLimit: TX_DEFAULT_GASLIMIT,
             gasPrice: this.convert10to16(gasPrice),
             to: to,
             data: data,
