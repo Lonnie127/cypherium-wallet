@@ -8,12 +8,14 @@ import { GlobalService } from '../global/global.service';
 // import * as Secp from 'secp256k1';
 import { environment } from '../../../environments/environment';
 
+
+const TX_VERSION = '0x122';
+const TX_DEFAULT_GASLIMIT = '0x5208';
 declare var Buffer;
 @Injectable({
     providedIn: 'root'
 })
-const TX_VERSION = '0x122';
-const TX_DEFAULT_GASLIMIT = '0x5208';
+
 export class Web3Service {
     public web3c;
     private pledgeContract;
